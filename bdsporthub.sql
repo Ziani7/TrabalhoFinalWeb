@@ -106,13 +106,3 @@ CREATE TABLE imagem (
   FOREIGN KEY (id_partida) REFERENCES partida(id)
 );
 
--- Eventos da partida (opcional: gols, cartões etc.)
-CREATE TABLE evento_partida (
-  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  id_partida BIGINT UNSIGNED NOT NULL,
-  id_atleta BIGINT UNSIGNED,
-  tipo_evento ENUM('gol', 'falta', 'cartao_amarelo', 'cartao_vermelho') NOT NULL,
-  minuto INT,
-  FOREIGN KEY (id_partida) REFERENCES partida(id) ON DELETE CASCADE,
-  FOREIGN KEY (id_atleta) REFERENCES atleta(id) ON DELETE SET NULL
-);
