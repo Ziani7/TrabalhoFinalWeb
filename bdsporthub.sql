@@ -280,3 +280,69 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Relacionamento: atleta -> equipe
+ALTER TABLE `atleta`
+  ADD CONSTRAINT `fk_atleta_equipe`
+  FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: classificacao -> equipe
+ALTER TABLE `classificacao`
+  ADD CONSTRAINT `fk_classificacao_equipe`
+  FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: classificacao -> competicao
+ALTER TABLE `classificacao`
+  ADD CONSTRAINT `fk_classificacao_competicao`
+  FOREIGN KEY (`id_competicao`) REFERENCES `competicao` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: comentario -> usuario
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `fk_comentario_usuario`
+  FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: comentario -> partida
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `fk_comentario_partida`
+  FOREIGN KEY (`id_jogo`) REFERENCES `partida` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: competicao -> modalidade
+ALTER TABLE `competicao`
+  ADD CONSTRAINT `fk_competicao_modalidade`
+  FOREIGN KEY (`id_modalidade`) REFERENCES `modalidade` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: competicao -> usuario (criador)
+ALTER TABLE `competicao`
+  ADD CONSTRAINT `fk_competicao_criador`
+  FOREIGN KEY (`id_criador`) REFERENCES `usuario` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: imagem -> partida
+ALTER TABLE `imagem`
+  ADD CONSTRAINT `fk_imagem_partida`
+  FOREIGN KEY (`id_jogo`) REFERENCES `partida` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: partida -> equipe1
+ALTER TABLE `partida`
+  ADD CONSTRAINT `fk_partida_equipe1`
+  FOREIGN KEY (`id_equipe1`) REFERENCES `equipe` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: partida -> equipe2
+ALTER TABLE `partida`
+  ADD CONSTRAINT `fk_partida_equipe2`
+  FOREIGN KEY (`id_equipe2`) REFERENCES `equipe` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Relacionamento: partida -> competicao
+ALTER TABLE `partida`
+  ADD CONSTRAINT `fk_partida_competicao`
+  FOREIGN KEY (`id_competicao`) REFERENCES `competicao` (`id`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
