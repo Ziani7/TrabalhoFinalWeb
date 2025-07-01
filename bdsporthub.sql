@@ -346,3 +346,13 @@ ALTER TABLE `partida`
   ADD CONSTRAINT `fk_partida_competicao`
   FOREIGN KEY (`id_competicao`) REFERENCES `competicao` (`id`)
   ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `inscricao` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_competicao` BIGINT UNSIGNED NOT NULL,
+  `id_equipe` BIGINT UNSIGNED NOT NULL,
+  `data_inscricao` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_inscricao_competicao` FOREIGN KEY (`id_competicao`) REFERENCES `competicao` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_inscricao_equipe` FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id`) ON DELETE CASCADE
+);
