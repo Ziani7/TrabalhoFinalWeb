@@ -82,13 +82,13 @@ include_once __DIR__ . '/Constantes.php';
  Rotas::addGet('/controller', 'Controller/CarroController.php', 'function'); // Variavel GET chamada function
 
  // Rotas com Variáveis GET do tipo Inteiro.
- Rotas::addGetInt('/editar', 'View/editarCarro.php', 'id'); // Variavel GET chamada id
+ Rotas::addGetInt('/editar', 'View/editarComp.php', 'id'); // Variavel GET chamada id
 
  // Rotas com Múltiplas Variáveis GET de qualquer tipo (Array de variáveis).
  Rotas::addGet('/noticia', 'noticias.php', array('categoria', 'id')); // Variaveis GET categoria e id.
 
  // Rotas completas com Expressões Regulares
- Rotas::addExpReg('/editar/(?P<id>\d+)', 'View/editarCarro.php'); // Rota com GET 
+ Rotas::addExpReg('/editar/(?P<id>\d+)', 'View/editarComp.php'); // Rota com GET
  Rotas::addExpReg('/noticia/(?P<categoria>\w+)/(?P<id>\d+)', 'noticias.php'); //Rota com dois GETs (texto e número).
 
  Execução das Rotas:
@@ -128,14 +128,14 @@ include_once __DIR__ . '/Constantes.php';
  
  
  Exemplo de Saída de Rota Amigável no Navegador:
- // Rota que exibe o arquivo cadastrarCarro.php
+ // Rota que exibe o arquivo cadastrarComp.php
  http://localhost/DSWEBII-PHP-ROTAS/cadastrar
  
- // Rota que exibe o arquivo editarCarro.php, recebendo dados (id) por GET.
+ // Rota que exibe o arquivo editarComp.php, recebendo dados (id) por GET.
  http://localhost/DSWEBII-PHP-ROTAS/editar/1
  
  Observe como o exemplo acima, da edição de um carro ficou mais amigável, que o correspondente sem a utilização de rotas:
- http://localhost/DSWEBII-PHP-ROTAS/src/View/editarCarro.php?id=1
+ http://localhost/DSWEBII-PHP-ROTAS/src/View/editarComp.php?id=1
  
 **************************************************************************************************************************
 **************************************************************************************************************************/
