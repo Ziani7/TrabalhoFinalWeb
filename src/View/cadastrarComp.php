@@ -13,7 +13,7 @@ include_once __DIR__ . '/../Controller/ModalidadeDAO.php';
 <h2>Cadastre Uma Competição</h2>
 
 <div>
-    <form method='post' action='<?=HOME?>controller/cadastrarComp.php'>
+    <form method='post' action='<?=HOME?>Controller/CompeticaoController.php'>
         <div>
             <label for='nome'>Nome da Competição</label>
             <input type='text' name='nome' id='nome' autocomplete='off' required>

@@ -10,6 +10,8 @@ Rotas::add('/cadastrar', 'View/cadastrarComp.php');
 Rotas::addGetInt('/editar', 'View/editarComp.php', 'id');
 Rotas::addGetInt('/excluir', 'View/excluirComp.php', 'id');
 Rotas::addGet('/controller', 'Controller/compController.php', 'function');
+Rotas::add('/usuario', 'View/cadastrarUsuario.php');
+Rotas::addGet('/cadastrarUsuario', 'Controller/UsuarioDAO.php', 'function');
 
 Rotas::erro('View/404.php');
 Rotas::exec();
