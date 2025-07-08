@@ -1,6 +1,6 @@
 <?php
 if(!defined('HOME')){
-	define('HOME', '/DSWEBII-PHP-ROTAS/');
+	define('HOME', '/TrabalhoFinalWeb/');
 }
 
 if(!defined('SRC')){

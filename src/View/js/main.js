@@ -1,4 +1,4 @@
-const HOME = '/DSWEBII-PHP-ROTAS/';
+const HOME = '/TrabalhoFinalWeb/';
 
 $(document).ready(function () {
     getMarca();

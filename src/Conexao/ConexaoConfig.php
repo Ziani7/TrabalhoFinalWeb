@@ -12,7 +12,7 @@ class ConexaoConfig {
 		$iniFile = parse_ini_file(__DIR__ . "/config.ini");
 		$this->sgbd = $iniFile["sgbd"];
 		$this->host = $iniFile["host"];
-		$this->bd = $iniFile["bd"];
+		$this->bd = $iniFile["bdsporthub"];
 		$this->usuario = $iniFile["usuario"];
 		$this->senha = $iniFile["senha"];
 	}

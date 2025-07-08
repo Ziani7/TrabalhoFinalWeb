@@ -1,0 +1,107 @@
+CREATE DATABASE IF NOT EXISTS bdsporthub;
+USE bdsporthub;
+
+-- Usuários
+CREATE TABLE usuario (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  login VARCHAR(255) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL
+);
+
+-- Modalidades (futebol, basquete, etc.)
+CREATE TABLE modalidade (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL
+);
+
+-- Equipes
+CREATE TABLE equipe (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL
+);
+
+-- Atletas vinculados a equipes
+CREATE TABLE atleta (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  data_nascimento DATE NOT NULL,
+  id_equipe BIGINT UNSIGNED NOT NULL,
+  FOREIGN KEY (id_equipe) REFERENCES equipe(id) ON DELETE CASCADE
+);
+
+-- Competições
+CREATE TABLE competicao (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  id_modalidade BIGINT UNSIGNED NOT NULL,
+  num_max_equipes INT NOT NULL,
+  ativo TINYINT(1) NOT NULL DEFAULT 1,
+  local VARCHAR(255) NOT NULL,
+  data_inicio DATE NOT NULL,
+  data_fim DATE NOT NULL,
+  id_criador BIGINT UNSIGNED NOT NULL,
+  FOREIGN KEY (id_modalidade) REFERENCES modalidade(id),
+  FOREIGN KEY (id_criador) REFERENCES usuario(id)
+);
+
+-- Inscrição de equipes nas competições
+CREATE TABLE inscricao (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id_competicao BIGINT UNSIGNED NOT NULL,
+  id_equipe BIGINT UNSIGNED NOT NULL,
+  data_inscricao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_competicao) REFERENCES competicao(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_equipe) REFERENCES equipe(id) ON DELETE CASCADE
+);
+
+-- Partidas
+CREATE TABLE partida (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  data DATE NOT NULL,
+  hora TIME NOT NULL,
+  local VARCHAR(255) NOT NULL,
+  id_equipe1 BIGINT UNSIGNED NOT NULL,
+  id_equipe2 BIGINT UNSIGNED NOT NULL,
+  id_competicao BIGINT UNSIGNED NOT NULL,
+  pontos_equipe1 INT NOT NULL DEFAULT 0,
+  pontos_equipe2 INT NOT NULL DEFAULT 0,
+  FOREIGN KEY (id_equipe1) REFERENCES equipe(id),
+  FOREIGN KEY (id_equipe2) REFERENCES equipe(id),
+  FOREIGN KEY (id_competicao) REFERENCES competicao(id)
+);
+
+-- Classificação por competição
+CREATE TABLE classificacao (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id_equipe BIGINT UNSIGNED NOT NULL,
+  id_competicao BIGINT UNSIGNED NOT NULL,
+  pontos INT NOT NULL DEFAULT 0,
+  vitorias INT NOT NULL DEFAULT 0,
+  empates INT NOT NULL DEFAULT 0,
+  derrotas INT NOT NULL DEFAULT 0,
+  gols_pro INT NOT NULL DEFAULT 0,
+  gols_contra INT NOT NULL DEFAULT 0,
+  FOREIGN KEY (id_equipe) REFERENCES equipe(id),
+  FOREIGN KEY (id_competicao) REFERENCES competicao(id)
+);
+
+-- Comentários nos jogos
+CREATE TABLE comentario (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id_usuario BIGINT UNSIGNED NOT NULL,
+  id_partida BIGINT UNSIGNED NOT NULL,
+  texto TEXT NOT NULL,
+  data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+  FOREIGN KEY (id_partida) REFERENCES partida(id)
+);
+
+-- Fotos dos jogos
+CREATE TABLE imagem (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  path VARCHAR(255) NOT NULL,
+  id_partida BIGINT UNSIGNED NOT NULL,
+  data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_partida) REFERENCES partida(id)
+);

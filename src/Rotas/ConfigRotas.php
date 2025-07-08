@@ -3,6 +3,7 @@
 include_once __DIR__ .'/Rotas.php';
 
 Rotas::add('/', 'View/home.php');
+Rotas::add('/index.php' , 'View/home.php');
 Rotas::add('/home', 'View/home.php');
 Rotas::addGet('/home', 'View/home.php', 'toast');
 Rotas::add('/cadastrar', 'View/cadastrarCarro.php');
