@@ -128,7 +128,7 @@ include_once __DIR__ . '/Constantes.php';
  
  
  Exemplo de Saída de Rota Amigável no Navegador:
- // Rota que exibe o arquivo cadastrarComp.php
+ // Rota que exibe o arquivo CompeticaoController.php
  http://localhost/DSWEBII-PHP-ROTAS/cadastrar
  
  // Rota que exibe o arquivo editarComp.php, recebendo dados (id) por GET.

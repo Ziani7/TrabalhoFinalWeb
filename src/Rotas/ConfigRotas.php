@@ -8,7 +8,7 @@ Rotas::addGet('/home', 'View/home.php', 'toast');
 Rotas::add('/cadastrar', 'View/cadastrarComp.php');
 Rotas::addGetInt('/editar', 'View/editarComp.php', 'id');
 Rotas::addGetInt('/excluir', 'View/excluirComp.php', 'id');
-Rotas::addGet('/controller', 'Controller/compController.php', 'function');
+Rotas::addGet('/controller', 'Controller/CompeticaoController.php', 'function');
 
 Rotas::erro('View/404.php');
 Rotas::exec();
